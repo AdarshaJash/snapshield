@@ -1,0 +1,10 @@
+[server]
+fileWatcherType = "none"
+headless = true
+runOnSave = false
+
+[client]
+showErrorDetails = "minimal"
+
+[theme]
+base = "dark"

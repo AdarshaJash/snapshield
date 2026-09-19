@@ -1,7 +1,30 @@
-# Architecture
+# SnapShield Architecture
 
-Input → preprocessing → local modality model → indicators/embeddings → local reasoning → explainable risk engine → recommendation.
+## Product loop
 
-The final implementation must document the exact model, quantization, runtime, execution provider and hardware path validated on the target Snapdragon-powered HP PC.
+Input → Perception → Evidence → Risk Fusion → Recommendation
 
-Do not claim NPU acceleration without measurement.
+### Current
+Text/email/SMS → phishing transformer → security evidence → risk score → action.
+
+### Multimodal expansion
+Screenshot/PDF/QR → OCR/vision → same evidence layer.
+
+## Snapdragon
+
+CPU: orchestration, parsing, UI  
+GPU: optional visual preprocessing  
+NPU: supported model inference through ONNX/QNN / Qualcomm AI runtime
+
+## Winning benchmark plan
+
+Measure on eligible Snapdragon hardware:
+- model load time
+- steady-state inference latency
+- peak memory
+- execution provider
+- CPU utilization
+- NPU utilization
+- battery/power behavior where measurable
+
+Never substitute another application's numbers for SnapShield's.

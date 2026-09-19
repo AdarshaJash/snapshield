@@ -1,156 +1,69 @@
-# 🛡️ SNAPSHIELD
+# SnapShield
 
-### Private multimodal AI security for the AI PC era.
+**Private multimodal security intelligence for the AI PC era.**
 
-**See it. Analyze it. Protect it — privately, on-device.**
+> See it. Analyze it. Protect it — privately.
 
----
+SnapShield is a local-first security assistant for suspicious messages and security content. It combines a compact open-source phishing classifier with a deterministic security-evidence layer covering urgency, credential/payment requests, action pressure and URL structure.
 
-## The idea
+## What is real in this build
 
-Modern attacks don't arrive in one format.
+- Local transformer inference using `specific-AI/email-agent-phishing-detection`.
+- Evidence-weighted risk fusion; no cloud AI API is required.
+- URL structural inspection for common suspicious patterns.
+- Screenshot intake UI with an explicit modular OCR/vision expansion path.
+- Runtime inspection for ONNX Runtime providers, including QNN when available.
+- Honest degradation: if the transformer cannot load, SnapShield does not invent an AI score.
+- A benchmark helper records latency from the actual machine instead of publishing borrowed numbers.
 
-They arrive as an email.  
-A screenshot.  
-A PDF.  
-A QR code.  
-A suspicious URL.  
-A convincing social-engineering message.
+## Run on Windows
 
-**SnapShield turns those scattered signals into one security decision.**
-
-> **Private content → local AI → evidence → action**
-
----
-
-## Product loop
-
-```text
-        DROP
-          ↓
-     ┌─────────┐
-     │  INPUT  │  Email • Image • PDF • QR • URL
-     └────┬────┘
-          ↓
-   ┌───────────────┐
-   │ LOCAL AI      │  OCR • Vision • NLP • SLM
-   └──────┬────────┘
-          ↓
-   ┌───────────────┐
-   │ THREAT ENGINE │  Signals • Risk • Evidence
-   └──────┬────────┘
-          ↓
-   ┌───────────────┐
-   │ USER DECISION │  Explain • Protect • Act
-   └───────────────┘
+```bat
+RUN.bat
 ```
 
----
+Or manually:
 
-## Why Snapdragon?
-
-SnapShield is designed for **on-device AI** on Snapdragon-powered Windows PCs.
-
-The implementation will evaluate:
-
-- Qualcomm AI Hub models
-- compatible open-source models
-- ONNX / PyTorch model paths
-- supported Qualcomm/QNN execution paths
-- model quantization and hardware-aware optimization
-
-**We will publish only validated model/runtime/hardware results.**
-
----
-
-## Security surfaces
-
-| Surface | Planned capability |
-|---|---|
-| 📧 Email | phishing + impersonation analysis |
-| 🖼️ Screenshot | OCR + visual scam signals |
-| 📄 PDF | extraction + semantic analysis |
-| 🔗 URL | suspicious destination indicators |
-| 🔳 QR | decode + URL risk analysis |
-| 🎙️ Voice | social-engineering analysis (planned) |
-
----
-
-## Design principles
-
-**01 — Private by default**  
-Keep sensitive analysis local whenever the selected workflow supports it.
-
-**02 — Explainable**  
-Don't just say *“dangerous.”* Show the evidence.
-
-**03 — Hardware-aware**  
-The Snapdragon NPU is part of the engineering target—not a logo on the slide.
-
-**04 — Measurable**  
-Latency, quality, memory and execution path will be benchmarked.
-
-**05 — Human-first**  
-A security warning should tell a user what to do next.
-
----
-
-## Benchmark card
-
-Final values are intentionally left open until hardware validation.
-
-| Metric | Result |
-|---|---|
-| Model | TBD |
-| Quantization | TBD |
-| Runtime | TBD |
-| Execution provider | TBD |
-| NPU path | TBD |
-| Warm latency | TBD |
-| Peak memory | TBD |
-| Precision / Recall / F1 | TBD |
-
-> **Evidence > hype.**
-
----
-
-## Repository map
-
-```text
-SnapShield/
-├── app/             # Product UI
-├── inference/       # Local model adapters
-├── security/        # Risk engine and security logic
-├── benchmarks/      # Reproducible performance tests
-├── docs/            # Architecture + demo documentation
-└── assets/          # Product visuals
+```bat
+py -3.14 -m venv .venv
+.venv\Scripts\activate
+python -m pip install -r requirements.txt
+python -m streamlit run app\main.py
 ```
 
----
+The first run downloads the model checkpoint from Hugging Face and can take time depending on the connection.
 
-## Roadmap
+## Measure the real local runtime
 
-- [x] Product concept
-- [x] Multimodal architecture
-- [x] Explainable risk-engine scaffold
-- [x] Premium UI direction
-- [ ] Select validated AI Hub / open-source models
-- [ ] Snapdragon execution
-- [ ] NPU benchmark
-- [ ] Evaluation dataset
-- [ ] End-to-end demo
-- [ ] Final documentation
+```bat
+.venv\Scripts\activate
+python benchmarks\benchmark_local.py
+```
 
----
+Record the output only for the machine/runtime on which it was measured. Do not reuse another device's latency as a SnapShield benchmark.
 
-## Challenge
+## Snapdragon deployment path
 
-**Snapdragon AI Lab Build & Present Challenge — 2026**
+The architecture is designed for Snapdragon-powered HP PCs: model → ONNX/QNN → Qualcomm runtime → supported Snapdragon NPU → measured latency, memory and utilization. The app reports QNN availability and does **not** claim NPU execution unless the runtime actually exposes `QNNExecutionProvider`.
 
-SnapShield is proposed as a Snapdragon-optimized AI use case. Final hardware-specific claims are subject to validation on the eligible Snapdragon-powered HP PC.
+This distinction matters: the current development machine is not assumed to be a Snapdragon PC.
 
----
+## Architecture
 
-### The closing line
+`Input → Local Model → Security Evidence → Risk Fusion → Human Action`
 
-> **The cloud doesn't need to see your secrets to help protect them.**
+See `docs/ARCHITECTURE.md` and `docs/DEPLOYMENT.md`.
+
+## Challenge alignment
+
+The Snapdragon AI Lab Build & Present Challenge requires a solution designed, developed or intended to be optimized for Snapdragon-powered HP PCs. Evaluation covers technical implementation, application use case & innovation, deployment & accessibility, and presentation & documentation.
+
+SnapShield's submission materials are included under `docs/`.
+
+## Privacy
+
+Sensitive content is processed locally on the selected local inference path. SnapShield is designed around minimizing unnecessary data movement. Do not paste confidential production data into a public demo or repository.
+
+## License
+
+MIT. See `LICENSE` if present in the repository.

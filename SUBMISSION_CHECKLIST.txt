@@ -1,0 +1,32 @@
+SNAPSHIELD — FINAL SUBMISSION CHECKLIST
+
+Challenge: Snapdragon AI Lab Build & Present Challenge — 2026
+Deadline: 30 Sep 2026, 11:59 PM IST
+
+LOCAL BUILD
+[ ] Python environment installs requirements.txt
+[ ] streamlit run app\main.py opens successfully
+[ ] First model load completes successfully
+[ ] Showcase scenario returns a real local-model result
+[ ] No QNN/NPU claim unless QNNExecutionProvider is actually detected
+[ ] Optional benchmark run completed on target hardware
+
+GITHUB
+[ ] Push all files on main branch
+[ ] Confirm README renders correctly
+[ ] Confirm docs/ and benchmarks/ are present
+[ ] Confirm no secrets or private files are committed
+[ ] Open repository URL in a clean browser/incognito window
+
+UNSTOP SUBMISSION
+[ ] Project title: SnapShield
+[ ] Project description PDF: docs/SnapShield_Brief_Final.pdf
+[ ] GitHub repository: https://github.com/AdarshaJash/snapshield
+[ ] Pitch PDF: docs/SnapShield_Pitch_Final.pdf
+[ ] Pitch PPTX: docs/SnapShield_Pitch_Final.pptx
+[ ] Answer Snapdragon laptop question truthfully
+[ ] Verify every field before final submission
+[ ] Submit before 30 Sep 2026, 11:59 PM IST
+
+TRUTH RULE
+Never claim Snapdragon hardware, NPU execution, or benchmark results unless actually measured on the relevant machine.

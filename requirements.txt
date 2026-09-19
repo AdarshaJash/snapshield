@@ -1,0 +1,4 @@
+streamlit>=1.40,<2
+transformers>=4.50
+torch>=2.7
+onnxruntime>=1.20
